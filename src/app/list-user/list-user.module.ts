@@ -4,9 +4,11 @@ import { ListUserComponent } from './list-user.component';
 import { listUserRoutingModule } from './list-user-routing.module';
 import { CardComponent } from './card/card.component';
 import { SharedModule } from '../shared/shared.module';
+import { DetailUserComponent } from './detail-user/detail-user.component';
+import { CardDetailComponent } from './detail-user/card-detail/card-detail.component';
 
 @NgModule({
-  declarations: [ListUserComponent, CardComponent],
+  declarations: [ListUserComponent, CardComponent, DetailUserComponent, CardDetailComponent],
   imports: [CommonModule, SharedModule, listUserRoutingModule],
 })
 export class ListUserModule {}

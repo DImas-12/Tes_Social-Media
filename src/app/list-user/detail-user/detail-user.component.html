@@ -1,0 +1,11 @@
+<div class="bg">
+  <div class="card" style="margin-top: 30px">
+    <button mat-raised-button color="primary" class="button">Post</button>
+    <button mat-raised-button color="primary">Library</button>
+  </div>
+  <div class="container-card">
+    <div *ngFor="let data of dataPost">
+      <app-card-detail [data]="data" class="card"></app-card-detail>
+    </div>
+  </div>
+</div>

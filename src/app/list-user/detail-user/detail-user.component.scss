@@ -1,0 +1,15 @@
+.bg {
+  height: 100vh;
+}
+.container-card {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+.card {
+  display: flex;
+  justify-content: center;
+}
+.button {
+  margin-right: 30px;
+}
