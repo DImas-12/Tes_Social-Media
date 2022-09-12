@@ -12,6 +12,13 @@ const routes: Routes = [
         import('./home/home.module').then((m) => m.HomeModule),
     },
   ]),
+  Shell.childRoutes([
+    {
+      path: 'listUser',
+      loadChildren: () =>
+        import('./list-user/list-user.module').then((m) => m.ListUserModule),
+    },
+  ]),
 ];
 
 @NgModule({

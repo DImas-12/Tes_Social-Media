@@ -8,7 +8,13 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
+  Home() {
+    this.router.navigate(['home']);
+  }
+  listUser() {
+    this.router.navigate(['listUser']);
+  }
 }

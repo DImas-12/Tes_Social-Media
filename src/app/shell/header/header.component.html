@@ -1,8 +1,12 @@
 <header>
   <h2>Social Media</h2>
   <div class="list">
-    <button mat-button color="primary" class="item">Beranda</button>
-    <button mat-button color="primary" class="item">User</button>
+    <button mat-button color="primary" class="item" (click)="Home()">
+      Beranda
+    </button>
+    <button mat-button color="primary" class="item" (click)="listUser()">
+      User
+    </button>
   </div>
 </header>
 <div class="content">

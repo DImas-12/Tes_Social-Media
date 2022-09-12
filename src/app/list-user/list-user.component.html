@@ -1,0 +1,11 @@
+<div class="bg display">
+  <div style="margin-top: 20px">
+    <h2>List User</h2>
+  </div>
+
+  <div class="container-card">
+    <div *ngFor="let data of listUser">
+      <app-card [data]="data"></app-card>
+    </div>
+  </div>
+</div>
