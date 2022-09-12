@@ -11,6 +11,8 @@ const routes = {
     'https://jsonplaceholder.typicode.com/comments?postId=' + id,
   getLibrary: (id: string) =>
     'https://jsonplaceholder.typicode.com/albums?userId=' + id,
+  getImage: (id: string) =>
+    'https://jsonplaceholder.typicode.com/photos?albumId=' + id,
 };
 
 @Injectable({
@@ -39,6 +41,12 @@ export class listUserService {
   }
   getLibrary(id: any): Observable<string> {
     return this.httpClient.get(routes.getLibrary(id)).pipe(
+      map((body: any) => body),
+      catchError(() => of('Error, could not load joke :-('))
+    );
+  }
+  getImage(id: any): Observable<string> {
+    return this.httpClient.get(routes.getImage(id)).pipe(
       map((body: any) => body),
       catchError(() => of('Error, could not load joke :-('))
     );
