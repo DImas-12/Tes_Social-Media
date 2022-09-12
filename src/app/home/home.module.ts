@@ -4,10 +4,9 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { CardComponent } from './card/card.component';
-import { HeadNavComponent } from './head-nav/head-nav.component';
 
 @NgModule({
-  declarations: [HomeComponent, CardComponent, HeadNavComponent],
+  declarations: [HomeComponent, CardComponent],
   imports: [CommonModule, HomeRoutingModule, SharedModule],
 })
 export class HomeModule {}
