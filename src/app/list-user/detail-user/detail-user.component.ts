@@ -10,8 +10,10 @@ import { listUserService } from '../list-user.service';
 })
 export class DetailUserComponent implements OnInit {
   dataPost: any = [];
+  dataLibrary: any = [];
   id: any;
   Post!: boolean;
+  Library!: boolean;
 
   constructor(
     private listUserservice: listUserService,
@@ -20,12 +22,15 @@ export class DetailUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.Post = false;
+    this.Library = false;
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     console.log('actived route', this.id);
-    this.getDataPostUser();
   }
   post() {
-    this.Post = true;
+    this.getDataPostUser();
+  }
+  library() {
+    this.getLibraryUser();
   }
   getDataPostUser() {
     this.listUserservice
@@ -39,6 +44,24 @@ export class DetailUserComponent implements OnInit {
         console.log('response', response);
         this.dataPost = response;
         console.log('response haha', this.dataPost);
+        this.Library = false;
+        this.Post = true;
+      });
+  }
+  getLibraryUser() {
+    this.listUserservice
+      .getLibrary(this.id)
+      .pipe(
+        finalize(() => {
+          console.log('done');
+        })
+      )
+      .subscribe((response: any) => {
+        console.log('response library', response);
+        this.dataLibrary = response;
+        console.log('response haha library', this.dataLibrary);
+        this.Library = true;
+        this.Post = false;
       });
   }
 }

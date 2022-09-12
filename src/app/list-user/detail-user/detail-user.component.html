@@ -3,11 +3,23 @@
     <button mat-raised-button color="primary" class="button" (click)="post()">
       Post
     </button>
-    <button mat-raised-button color="primary">Library</button>
+    <button mat-raised-button color="primary" (click)="library()">
+      Library
+    </button>
   </div>
   <div class="container-card" *ngIf="Post">
+    <h1 class="card">Posting</h1>
     <div *ngFor="let data of dataPost">
       <app-card-detail [data]="data" class="card"></app-card-detail>
+    </div>
+  </div>
+  <div class="container-card-Library" *ngIf="Library">
+    <div>
+      <h1>Library :</h1>
+    </div>
+
+    <div *ngFor="let data of dataLibrary">
+      <app-card-library [data]="data"></app-card-library>
     </div>
   </div>
 </div>

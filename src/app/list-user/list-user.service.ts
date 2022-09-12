@@ -5,10 +5,12 @@ import { map, catchError } from 'rxjs/operators';
 
 const routes = {
   listUser: () => 'https://jsonplaceholder.typicode.com/users',
-  postUser: (id: string) =>
+  getpostUser: (id: string) =>
     'https://jsonplaceholder.typicode.com/posts?userId=' + id,
-  postComment: (id: string) =>
+  getpostComment: (id: string) =>
     'https://jsonplaceholder.typicode.com/comments?postId=' + id,
+  getLibrary: (id: string) =>
+    'https://jsonplaceholder.typicode.com/albums?userId=' + id,
 };
 
 @Injectable({
@@ -24,13 +26,19 @@ export class listUserService {
     );
   }
   getPost(id: any): Observable<string> {
-    return this.httpClient.get(routes.postUser(id)).pipe(
+    return this.httpClient.get(routes.getpostUser(id)).pipe(
       map((body: any) => body),
       catchError(() => of('Error, could not load joke :-('))
     );
   }
   getComment(id: any): Observable<string> {
-    return this.httpClient.get(routes.postComment(id)).pipe(
+    return this.httpClient.get(routes.getpostComment(id)).pipe(
+      map((body: any) => body),
+      catchError(() => of('Error, could not load joke :-('))
+    );
+  }
+  getLibrary(id: any): Observable<string> {
+    return this.httpClient.get(routes.getLibrary(id)).pipe(
       map((body: any) => body),
       catchError(() => of('Error, could not load joke :-('))
     );
