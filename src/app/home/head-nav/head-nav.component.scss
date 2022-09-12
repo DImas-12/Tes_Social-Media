@@ -1,0 +1,20 @@
+header {
+  width: 100vw;
+  height: 10%;
+  background-color: #0039e6;
+  box-shadow: 5px 5px 10px grey;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  color: white;
+}
+.list {
+  display: flex;
+  flex-direction: row;
+  margin-left: 30px;
+  margin-top: -15px;
+}
+.item {
+  margin: 0px 10px 0px 10px;
+  color: white;
+}
