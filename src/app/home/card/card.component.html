@@ -1,6 +1,6 @@
 <mat-card class="example-card">
   <div class="menu" *ngIf="DataPost">
-    <mat-card-title>{{ data.title }}</mat-card-title>
+    <mat-card-title>{{ data.form.title }}</mat-card-title>
     <button
       mat-icon-button
       [matMenuTriggerFor]="menu"
@@ -11,7 +11,7 @@
   </div>
 
   <mat-card-content *ngIf="DataPost">
-    <p>{{ data.content }}</p>
+    <p>{{ data.form.content }}</p>
   </mat-card-content>
   <form class="Form" [formGroup]="EditFormPost" *ngIf="EditPost">
     <mat-form-field appearance="outline">
@@ -41,7 +41,10 @@
   <mat-card-footer *ngIf="Comment">
     <h1 style="margin-left: 30px">Comment</h1>
     <div *ngFor="let data of dataComment">
-      <app-edit-comment [data]="data"></app-edit-comment>
+      <app-edit-comment
+        [data]="data"
+        (onDelete)="Deletcomment($event)"
+      ></app-edit-comment>
     </div>
 
     <!-- comment -->
@@ -64,7 +67,7 @@
     <span>Edit</span>
   </button>
 
-  <button mat-menu-item>
+  <button mat-menu-item (click)="DeletePost()">
     <mat-icon>delete</mat-icon>
     <span>Delete</span>
   </button>

@@ -21,8 +21,8 @@
         Submit
       </button>
     </form>
-    <div *ngFor="let data of dataPost" style="background-color: aqua">
-      <app-card [data]="data" style="background-color: red"></app-card>
+    <div *ngFor="let data of dataPost">
+      <app-card [data]="data" (onDelete)="DeletPost($event)"></app-card>
     </div>
   </div>
   <!-- <div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class EditCommentComponent implements OnInit {
   @Input() data!: any;
+  @Output() onDelete: EventEmitter<any> = new EventEmitter<any>();
   formcomment!: boolean;
   Editcomment!: boolean;
   EditFormComment!: FormGroup;
@@ -21,13 +22,17 @@ export class EditCommentComponent implements OnInit {
 
   editComment(data: any) {
     console.log('hjhj', data);
-    this.EditFormComment.setValue(this.data);
+    this.EditFormComment.setValue(this.data.form);
 
     this.formcomment = false;
     this.Editcomment = true;
   }
   SubmitEditComment() {
-    this.data = this.EditFormComment.value;
+    const tmp = {
+      id: this.data.id,
+      form: this.EditFormComment.value,
+    };
+    this.data = tmp;
     this.formcomment = true;
     this.Editcomment = false;
   }
@@ -35,5 +40,8 @@ export class EditCommentComponent implements OnInit {
     this.EditFormComment = new FormGroup({
       comment: new FormControl(null, [Validators.required]),
     });
+  }
+  Delete() {
+    this.onDelete.emit(this.data);
   }
 }

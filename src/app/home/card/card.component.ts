@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class CardComponent implements OnInit {
   @Input() data!: any;
+  @Output() onDelete: EventEmitter<any> = new EventEmitter<any>();
   EditFormPost!: FormGroup;
   EditFormComment!: FormGroup;
   FormComment!: FormGroup;
@@ -46,11 +47,17 @@ export class CardComponent implements OnInit {
       comment: new FormControl(null, [Validators.required]),
     });
   }
+  number = 0;
   Submit() {
     if (this.FormComment.status == 'INVALID') {
       alert('please complete the Comment form');
     } else if (this.FormComment.status == 'VALID') {
-      this.dataComment.push(this.FormComment.value);
+      const tmp = {
+        id: this.number++,
+        form: this.FormComment.value,
+      };
+
+      this.dataComment.push(tmp);
     }
   }
   openComment() {
@@ -66,13 +73,26 @@ export class CardComponent implements OnInit {
 
   editPost() {
     console.log('hjhj');
-    this.EditFormPost.setValue(this.data);
+
+    this.EditFormPost.setValue(this.data.form);
     this.DataPost = false;
     this.EditPost = true;
   }
   SubmitEdit() {
-    this.data = this.EditFormPost.value;
+    const tmp = {
+      id: this.data.id,
+      form: this.EditFormPost.value,
+    };
+    this.data = tmp;
     this.DataPost = true;
     this.EditPost = false;
+  }
+
+  Deletcomment(data: any) {
+    console.log('delete', data);
+    this.dataComment.splice(0, data.id);
+  }
+  DeletePost() {
+    this.onDelete.emit(this.data);
   }
 }

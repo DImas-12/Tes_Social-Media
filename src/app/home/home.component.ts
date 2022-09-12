@@ -21,12 +21,17 @@ export class HomeComponent implements OnInit {
       content: new FormControl(null, Validators.required),
     });
   }
+  number = 0;
   Submit() {
     console.log('data submit', this.FormPost.status);
     if (this.FormPost.status == 'INVALID') {
       alert('please complete the form');
     } else if (this.FormPost.status == 'VALID') {
-      this.dataPost.push(this.FormPost.value);
+      const tmp = {
+        id: this.number++,
+        form: this.FormPost.value,
+      };
+      this.dataPost.push(tmp);
     }
   }
   test() {
@@ -35,5 +40,9 @@ export class HomeComponent implements OnInit {
     };
     this.dataPost.push(tmp);
     console.log('haha', tmp);
+  }
+  DeletPost(data: any) {
+    console.log('delete', data);
+    this.dataPost.splice(0, data.id);
   }
 }
