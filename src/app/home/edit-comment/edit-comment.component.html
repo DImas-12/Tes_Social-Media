@@ -1,0 +1,31 @@
+<div class="card menu" *ngIf="formcomment">
+  <p style="margin-top: 10px">{{ data.comment }}</p>
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="menuComment"
+    aria-label="Example icon-button with a menu"
+  >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+</div>
+<form class="Form" [formGroup]="EditFormComment" *ngIf="Editcomment">
+  <mat-form-field appearance="outline">
+    <mat-label>Comment</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="comment" />
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="SubmitEditComment()">
+    Edit
+  </button>
+</form>
+<mat-menu #menuComment="matMenu">
+  <button mat-menu-item (click)="editComment($event)">
+    <mat-icon>edit</mat-icon>
+    <span>Edit</span>
+  </button>
+
+  <button mat-menu-item>
+    <mat-icon>delete</mat-icon>
+    <span>Delete</span>
+  </button>
+</mat-menu>
