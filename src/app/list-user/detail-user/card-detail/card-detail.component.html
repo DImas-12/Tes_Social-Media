@@ -5,9 +5,22 @@
   </mat-card-content>
   <mat-divider inset></mat-divider>
   <mat-card-actions>
-    <button mat-button>Coment</button>
+    <button mat-button (click)="ButtonComment()" *ngIf="T_Comment">
+      Coment
+    </button>
+    <button mat-button (click)="closeComment()" *ngIf="T_Close">Close</button>
   </mat-card-actions>
-  <mat-card-footer>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  <mat-card-footer *ngIf="Comment">
+    <h1 style="margin-left: 30px">Comment</h1>
+    <div *ngFor="let data of dataComment">
+      <div class="card">
+        <div class="head">
+          <h3 style="font-weight: bold">{{ data.name }}</h3>
+          <small>{{ data.email }}</small>
+        </div>
+
+        <p style="margin-top: 10px">{{ data.body }}</p>
+      </div>
+    </div>
   </mat-card-footer>
 </mat-card>

@@ -7,6 +7,8 @@ const routes = {
   listUser: () => 'https://jsonplaceholder.typicode.com/users',
   postUser: (id: string) =>
     'https://jsonplaceholder.typicode.com/posts?userId=' + id,
+  postComment: (id: string) =>
+    'https://jsonplaceholder.typicode.com/comments?postId=' + id,
 };
 
 @Injectable({
@@ -23,6 +25,12 @@ export class listUserService {
   }
   getPost(id: any): Observable<string> {
     return this.httpClient.get(routes.postUser(id)).pipe(
+      map((body: any) => body),
+      catchError(() => of('Error, could not load joke :-('))
+    );
+  }
+  getComment(id: any): Observable<string> {
+    return this.httpClient.get(routes.postComment(id)).pipe(
       map((body: any) => body),
       catchError(() => of('Error, could not load joke :-('))
     );

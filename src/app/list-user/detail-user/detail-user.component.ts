@@ -11,15 +11,21 @@ import { listUserService } from '../list-user.service';
 export class DetailUserComponent implements OnInit {
   dataPost: any = [];
   id: any;
+  Post!: boolean;
+
   constructor(
     private listUserservice: listUserService,
     private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.Post = false;
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     console.log('actived route', this.id);
     this.getDataPostUser();
+  }
+  post() {
+    this.Post = true;
   }
   getDataPostUser() {
     this.listUserservice
