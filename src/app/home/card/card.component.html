@@ -1,16 +1,29 @@
 <mat-card class="example-card">
-  <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-  <mat-card-title>Shiba Inu</mat-card-title>
+  <mat-card-title>{{ data.title }}</mat-card-title>
   <mat-card-content>
-    <p>This card has divider and indeterminate progress as footer</p>
-    <p>{{ longText }}</p>
+    <p>{{ data.content }}</p>
   </mat-card-content>
   <mat-divider inset></mat-divider>
   <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
+    <button mat-button (click)="openComment()" *ngIf="T_Comment">Coment</button>
+    <button mat-button (click)="closeComment()" *ngIf="T_Close">Close</button>
   </mat-card-actions>
-  <mat-card-footer>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  <mat-card-footer *ngIf="Comment">
+    <h1 style="margin-left: 30px">Comment</h1>
+    <div *ngFor="let data of dataComment">
+      <div class="card">
+        <p style="margin-top: 10px">{{ data.comment }}</p>
+      </div>
+    </div>
+    <form class="Form" [formGroup]="FormComment">
+      <mat-form-field appearance="outline">
+        <mat-label>Comment</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="comment" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="Submit()">
+        Submit
+      </button>
+    </form>
   </mat-card-footer>
 </mat-card>

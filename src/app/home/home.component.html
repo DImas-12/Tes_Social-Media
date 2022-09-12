@@ -1,6 +1,37 @@
-<div class="bg display">
-  <div>
-    <p>home works!</p>
-    <app-card></app-card>
+<div class="bg display2">
+  <div class="card">
+    <h1>Post</h1>
+    <form class="Form" [formGroup]="FormPost">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="title" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Content</mat-label>
+
+        <textarea
+          matInput
+          placeholder="Placeholder"
+          formControlName="content"
+        ></textarea>
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="Submit()">
+        Submit
+      </button>
+    </form>
+    <div *ngFor="let data of dataPost" style="background-color: aqua">
+      <app-card [data]="data" style="background-color: red"></app-card>
+    </div>
   </div>
+  <!-- <div>
+
+
+    <button (click)="test()">tes</button>
+    <div *ngFor="let data of dataPost">
+      <p>{{ data.produk }}</p>
+    </div>
+    <app-card></app-card>
+  </div> -->
 </div>
