@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs';
+import Swal from 'sweetalert2';
 import { listUserService } from './list-user.service';
 
 @Component({
@@ -23,9 +24,9 @@ export class ListUserComponent implements OnInit {
         })
       )
       .subscribe((response: any) => {
-        console.log('response', response);
         this.listUser = response;
-        console.log('response haha', this.listUser);
+
+        Swal.fire('Saved!', '', 'success');
       });
   }
 }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-card',
@@ -27,7 +28,6 @@ export class CardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log('data nya haha', this.data);
     this.FormGroup();
     this.Comment = false;
     this.T_Comment = true;
@@ -50,7 +50,11 @@ export class CardComponent implements OnInit {
   number = 0;
   Submit() {
     if (this.FormComment.status == 'INVALID') {
-      alert('please complete the Comment form');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'please complete the form',
+      });
     } else if (this.FormComment.status == 'VALID') {
       const tmp = {
         id: this.number++,
@@ -58,6 +62,7 @@ export class CardComponent implements OnInit {
       };
 
       this.dataComment.push(tmp);
+      Swal.fire('Saved!', '', 'success');
     }
   }
   openComment() {
@@ -72,8 +77,6 @@ export class CardComponent implements OnInit {
   }
 
   editPost() {
-    console.log('hjhj');
-
     this.EditFormPost.setValue(this.data.form);
     this.DataPost = false;
     this.EditPost = true;
@@ -86,11 +89,12 @@ export class CardComponent implements OnInit {
     this.data = tmp;
     this.DataPost = true;
     this.EditPost = false;
+    Swal.fire('Saved!', '', 'success');
   }
 
   Deletcomment(data: any) {
-    console.log('delete', data);
     this.dataComment.splice(0, data.id);
+    Swal.fire('Saved!', '', 'success');
   }
   DeletePost() {
     this.onDelete.emit(this.data);

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { finalize } from 'rxjs';
+import Swal from 'sweetalert2';
 import { listUserService } from '../../list-user.service';
 
 @Component({
@@ -29,9 +30,9 @@ export class LibraryImageComponent implements OnInit {
         })
       )
       .subscribe((response: any) => {
-        console.log('response image', response);
         this.dataImage = response;
-        console.log('response haha image', this.dataImage);
+
+        Swal.fire('Saved!', '', 'success');
       });
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { finalize } from 'rxjs';
+import Swal from 'sweetalert2';
 import { listUserService } from '../list-user.service';
 
 @Component({
@@ -24,7 +25,6 @@ export class DetailUserComponent implements OnInit {
     this.Post = false;
     this.Library = false;
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log('actived route', this.id);
   }
   post() {
     this.getDataPostUser();
@@ -41,11 +41,11 @@ export class DetailUserComponent implements OnInit {
         })
       )
       .subscribe((response: any) => {
-        console.log('response', response);
         this.dataPost = response;
-        console.log('response haha', this.dataPost);
+
         this.Library = false;
         this.Post = true;
+        Swal.fire('Saved!', '', 'success');
       });
   }
   getLibraryUser() {
@@ -57,11 +57,11 @@ export class DetailUserComponent implements OnInit {
         })
       )
       .subscribe((response: any) => {
-        console.log('response library', response);
         this.dataLibrary = response;
-        console.log('response haha library', this.dataLibrary);
+
         this.Library = true;
         this.Post = false;
+        Swal.fire('Saved!', '', 'success');
       });
   }
 }

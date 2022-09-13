@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { finalize } from 'rxjs';
+import Swal from 'sweetalert2';
 import { listUserService } from '../../list-user.service';
 
 @Component({
@@ -16,7 +17,6 @@ export class CardDetailComponent implements OnInit {
   constructor(private listUserservice: listUserService) {}
 
   ngOnInit(): void {
-    console.log('data nya haha', this.data);
     this.T_Comment = true;
     this.T_Close = false;
     this.Comment = false;
@@ -38,12 +38,12 @@ export class CardDetailComponent implements OnInit {
         })
       )
       .subscribe((response: any) => {
-        console.log('response', response);
         this.dataComment = response;
-        console.log('response Komen', this.dataComment);
+
         this.Comment = true;
         this.T_Comment = false;
         this.T_Close = true;
+        Swal.fire('Saved!', '', 'success');
       });
   }
 }

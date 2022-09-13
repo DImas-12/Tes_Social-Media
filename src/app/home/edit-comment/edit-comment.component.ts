@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-comment',
@@ -15,13 +16,11 @@ export class EditCommentComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log('data nya haha', this.data);
     this.formcomment = true;
     this.FormGroup();
   }
 
   editComment(data: any) {
-    console.log('hjhj', data);
     this.EditFormComment.setValue(this.data.form);
 
     this.formcomment = false;
@@ -35,6 +34,7 @@ export class EditCommentComponent implements OnInit {
     this.data = tmp;
     this.formcomment = true;
     this.Editcomment = false;
+    Swal.fire('Saved!', '', 'success');
   }
   FormGroup() {
     this.EditFormComment = new FormGroup({

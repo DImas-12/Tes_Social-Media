@@ -14,9 +14,7 @@ export class CardLibraryComponent implements OnInit {
     private listUserservice: listUserService
   ) {}
 
-  ngOnInit(): void {
-    console.log('data nya haha', this.data);
-  }
+  ngOnInit(): void {}
   DetailImage() {
     this.router.navigate([`listUser/detailUser/library/image/${this.data.id}`]);
   }
